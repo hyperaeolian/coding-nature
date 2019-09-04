@@ -1,0 +1,24 @@
+[package]
+name = "wasm-computation-engine"
+version = "0.1.0"
+authors = ["Rob Miller <self.robertmiller@gmail.com>"]
+
+[features]
+default = ["console_error_panic_hook"]
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies.wasm-bindgen]
+version = "^0.2"
+features = ["serde-serialize"]
+
+[dependencies]
+serde = "1.0.99"
+js-sys = "0.3"
+serde_derive = "1.0"
+
+console_error_panic_hook = { version = "0.1.1", optional = true }
+
+[profile.release]
+opt-level = "s"

@@ -1,0 +1,14 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "coding-nature-dev-20190831184721-authRole",
+            "UnauthRoleArn": "arn:aws:iam::843504630029:role/coding-nature-dev-20190831184721-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::843504630029:role/coding-nature-dev-20190831184721-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "coding-nature-dev-20190831184721-deployment",
+            "UnauthRoleName": "coding-nature-dev-20190831184721-unauthRole",
+            "StackName": "coding-nature-dev-20190831184721",
+            "StackId": "arn:aws:cloudformation:us-east-1:843504630029:stack/coding-nature-dev-20190831184721/4b1fda30-cc41-11e9-8657-0e24761bd22a"
+        }
+    }
+}
