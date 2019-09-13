@@ -18,7 +18,10 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
+    "init": "npm i && npm run install:wasm && npm run build:wasm && npm run link:wasm",
     "build:wasm": "cd lib && wasm-pack build && cd ..",
+    "install:wasm": "curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh",
+    "link:wasm": "cd ./lib/pkg && npm link && cd ../.. && npm link wasm-computation-engine",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },

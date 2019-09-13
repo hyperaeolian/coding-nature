@@ -9,14 +9,42 @@ const App = () => {
 
   return (
     <div className="App">
-      <div>Should use Webassembly: <input type="checkbox" name="shouldUseWasm" value="shouldUseWasm" onChange={() => setShouldUseWasm(!shouldUseWasm)}></input></div>
-      <div>Number of Boids: <input type="number" name="numBoids" min="10" max="1000" onChange={(e: any) => setNumBoids(e.target.value)} /></div>
-      <div id="execution-time-display"></div>
       <header className="App-header">
-        <FlockingAnimation shouldUseWasm={shouldUseWasm} numBoids={numBoids} />
+        <WasmToggle
+          shouldUseWasm={shouldUseWasm}
+          setShouldUseWasm={setShouldUseWasm }
+        />
+        <BoidsCounter
+          numBoids={ numBoids }
+          setNumBoids={ setNumBoids }
+        />
+        <div id="execution-time-display">Moving average: 0</div>
       </header>
+        <FlockingAnimation shouldUseWasm={shouldUseWasm} numBoids={numBoids} />
     </div>
   );
 };
+
+function WasmToggle(props: any){
+  return <div>
+    <strong>Use Webassembly:</strong> <input
+      type="checkbox"
+      name="shouldUseWasm"
+      value="shouldUseWasm"
+      onChange={() => props.setShouldUseWasm(!props.shouldUseWasm)} />
+  </div>;
+}
+
+function BoidsCounter(props: any){
+  return <div>
+    <strong>Number of Boids:</strong> <input
+      type="number"
+      name="numBoids"
+      min="10"
+      max="1000"
+      value={props.numBoids}
+      onChange={(e: any) => props.setNumBoids(e.target.value)} />
+  </div>;
+}
 
 export default App;
