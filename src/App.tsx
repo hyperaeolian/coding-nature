@@ -9,7 +9,7 @@ const App = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <FlockingAnimation />
+        <FlockingAnimation shouldUseWasm={true} numBoids={150} />
       </header>
     </div>
   );

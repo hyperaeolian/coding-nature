@@ -1,7 +1,7 @@
-import { Vec3D, Boid } from "./types";
+import { Vec3D, WasmBoid } from "../types";
 import * as p5Instance from "p5";
 
-export function createBoid(positionX: number, positionY: number): Boid {
+export function createBoid(positionX: number, positionY: number): WasmBoid {
 	return {
 		acceleration: createVector({}),
 		velocity: createRandomVector(),
@@ -15,14 +15,10 @@ export function createBoid(positionX: number, positionY: number): Boid {
 	};
 };
 
-export function renderBoid(p5: p5Instance, boid: Boid){
+export function renderBoid(p5: p5Instance, boid: WasmBoid){
 	const direction = Math.atan2(boid.velocity.y, boid.velocity.x) + 90;
 	const size = boid.size;
-	p5.fill(
-		p5.map(boid.position.x, 0, p5.width, 10, 255),
-		p5.map(boid.position.y, 0, p5.height, 10, 255),
-		192, 100
-	);
+	p5.fill(100);
 	p5.noStroke();
 	p5.push();
 		p5.translate(boid.position.x, boid.position.y);
