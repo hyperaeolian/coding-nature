@@ -1,4 +1,15 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Flocking Simulation
+
+The [flocking simulation](https://www.red3d.com/cwr/boids/) is implemented both as a wasm module (in Rust code) and in javascript. You can toggle each implementation in the running app by clicking the `Use Wasm` checkbox.
+
+Code for the Rust/Wasm implementation can be found in `/lib/src`.
+The Javascript implementation is in `/src/sketches/flocking/js/boid.ts`
+
+### More Info
+- For flocking, Daniel Shiffman's [Nature of Code](https://natureofcode.com/book/chapter-6-autonomous-agents/) book is an excellent resource, and the Javascript implementation is based on the implementation in this book
+- [Webassembly](https://webassembly.org/)
+- [Rust](https://www.rust-lang.org/)
+
 
 ## Available Scripts
 
@@ -12,57 +23,19 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
-### `npm test`
+### `npm init`
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This performs several tasks:
+- Installs dependencies
+- Installs [wasm-pack](https://rustwasm.github.io/wasm-pack/). If you already have it install, click "N" when asked if you want to overrite your installation.
+- Builds the wasm project in the ./lib directory.
+- Links the wasm module to the top-level npm dependencies
 
-### `npm run build`
+### `npm run link:wasm`
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Sets up the symlinks between the wasm module and the react-app
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+### `npm run build:wasm`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Builds the wasm project
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
