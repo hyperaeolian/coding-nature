@@ -1,13 +1,15 @@
 import * as p5Instance from "p5";
 import { createBoid, renderBoid } from "./boid";
 import { WasmBoid, FlockSketchProps, WithCanvas } from "../types";
+import { timeExecution } from "../../utils";
 
 
 export default (props: FlockSketchProps) => function WasmFlockingSketch(p5: p5Instance) {
 
     let boids: WasmBoid[] = [];
-
+    const displayNode: HTMLElement = document.getElementById("execution-time-display") as HTMLElement;
     const drawBoid = renderBoid.bind(null, p5);
+    let sum = 0;
 
     function runOnce() {
         initCanvas();
@@ -17,10 +19,17 @@ export default (props: FlockSketchProps) => function WasmFlockingSketch(p5: p5In
 
     function runOnEveryFrame() {
         p5.background(51);
-        boids = window.computationEngine.flock(p5.width, p5.height, boids) || [];
-        for (let i = 0; i < boids.length; i++) {
-            drawBoid(boids[i]);
-        } 
+        const executionTime = timeExecution(() => {
+            boids = window.computationEngine.flock(p5.width, p5.height, boids) || [];
+            for (let i = 0; i < boids.length; i++) {
+                drawBoid(boids[i]);
+            }
+        });
+        sum += executionTime;
+        if (p5.frameCount % 100 === 0) {
+            displayNode.innerText = `Moving Average ${sum / 100}`;
+            sum = 0;
+        }
     }
 
     function initCanvas(){

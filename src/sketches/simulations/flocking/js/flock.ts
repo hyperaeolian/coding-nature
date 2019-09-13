@@ -1,11 +1,14 @@
 import * as p5Instance from "p5";
 import Boid from "./boid";
 import { WithCanvas, FlockSketchProps } from "../types";
+import { timeExecution } from "../../utils";
 
 
 export default (props: FlockSketchProps) => function JsFlockingSketch(p5: p5Instance) {
 
 	let boids: Boid[];
+	const displayNode: HTMLElement = document.getElementById("execution-time-display") as HTMLElement;
+	let sum = 0;
 
     function runOnce() {
 		initCanvas();
@@ -13,9 +16,16 @@ export default (props: FlockSketchProps) => function JsFlockingSketch(p5: p5Inst
     }
 
     function runOnEveryFrame() {
-        p5.background(51);
-        for (let i = 0; i < boids.length; i++) {
-            boids[i].run(boids);
+		p5.background(51);
+		const executionTime = timeExecution(() => {
+			for (let i = 0; i < boids.length; i++) {
+				boids[i].run(boids);
+			}
+		});
+		sum += executionTime;
+		if (p5.frameCount % 100 === 0) {
+            displayNode.innerText = `Moving Average ${sum / 100}`;
+            sum = 0;
         }
 	}
 	

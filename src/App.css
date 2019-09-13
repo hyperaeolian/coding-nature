@@ -1,1 +1,4 @@
-
+.ui-btn {
+    position: absolute;
+    z-index: 10;
+}
